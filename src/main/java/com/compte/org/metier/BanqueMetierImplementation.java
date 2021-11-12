@@ -2,7 +2,11 @@ package com.compte.org.metier;
 
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,11 +74,11 @@ public class BanqueMetierImplementation implements IBanqueMetier {
 
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
-	public Page<Operation> listOperation(String codeCpte, int page, int size) {
+	public Pageable listOperation(String codeCpte, int page, int size) {
 		// TODO Auto-generated method stub
-		return operationRepository.listOperation(codeCpte, new QPageRequest(page, size));
+		return  operationRepository.listOperation(codeCpte, new PageRequest(page, size, Direction.ASC,"dateOperation"));
 	}
 
 }

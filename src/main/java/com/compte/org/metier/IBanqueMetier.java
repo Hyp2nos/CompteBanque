@@ -1,5 +1,6 @@
 package com.compte.org.metier;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.Page;
 
 import com.compte.org.enteties.Compte;
@@ -11,5 +12,5 @@ public interface IBanqueMetier {
 	public void verser(String codeCpte,double	montant);
 	public void retirer(String codeCpte , double montant);
 	public void virement(String codeCpte1,String codeCpt2,double montant);
-	public Page<Operation> listOperation(String codeCpte , int page , int size);
+	public Pageable listOperation(String codeCpte , int page , int size);
 }
