@@ -3,11 +3,6 @@ package com.compte.org.metier;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +10,6 @@ import com.compte.org.dao.CompteRepository;
 import com.compte.org.dao.OperationRepository;
 import com.compte.org.enteties.Compte;
 import com.compte.org.enteties.CompteCourant;
-import com.compte.org.enteties.Operation;
 import com.compte.org.enteties.Retrait;
 import com.compte.org.enteties.Versement;
 
@@ -73,12 +67,27 @@ public class BanqueMetierImplementation implements IBanqueMetier {
 		verser(codeCpte1, montant);
 
 	}
+//
+//	@Override
+//	public Pageable listOperation(String codeCpte, int page, int size) {
+//		// TODO Auto-generated method stub
+//		return operationRepository.listOperation(codeCpte, new QPageRequest(page, size));
+//	}
 
-	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	public Pageable listOperation(String codeCpte, int page, int size) {
 		// TODO Auto-generated method stub
-		return  operationRepository.listOperation(codeCpte, new PageRequest(page, size, Direction.ASC,"dateOperation"));
+		return null;
 	}
+
+//	@SuppressWarnings({ "deprecation", "unchecked" })
+//	@Override
+//	public Pageable listOperation(String codeCpte, int page, int size) {
+//		// TODO Auto-generated method stub
+//		List<Order> list = new ArrayList<>();
+//		list.addAll("dateOperation");
+//		Sort sort = new Sort(list);
+//		return  operationRepository.listOperation(codeCpte, new PageRequest(page, size, Sort.Direction.ASC));
+//	}
 
 }

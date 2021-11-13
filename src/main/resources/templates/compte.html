@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.utlraq.net.nz/thymeleaf/layout"
+		layout:decorator="template1"
+>
+<head>
+<meta charset="UTF-8"/>
+<title>Votre Banque</title>
+</head>
+<body>
+	<div layout:fragment="content"></div>
+	<div class="col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Consultation du compte</div>
+			<div class="panel-body">
+			<form action="" th:action="@{/consulterCompte}" method="get">
+				<div>
+					<label>Code compte:</label>
+					<input type="text" name="codeCompte">
+					<button type="submit" class="btn btn-primary">OK</button>
+				</div>
+			</form>
+			<div class="text-danger" th:if="${exception}" th:text="${exception.message}">
+			
+			</div>
+			
+			</div>
+		</div>
+		
+		<div class="panel panel-primary" th:if="${compte}">
+			<div class="panel-heading">Information sur le compte</div>
+			<div class="panel-body">
+			
+			<div>
+				<label>Client:</label>
+			    <label th:text="${compte.client.nom}"></label>		
+			</div>
+			
+			<div>
+				<label>Code:</label>
+			    <label th:text="${compte.codeCompte}"></label>		
+			</div>
+			
+			<div>
+				<label>Solde:</label>
+			    <label th:text="${compte.solde}"></label>		
+			</div>	
+			
+			<div>
+				<label>Date de creation:</label>
+			    <label th:text="${compte.dateCreation}"></label>		
+			</div>	
+			
+			<div>
+				<label>Type:</label>
+			    <label th:text="${compte.class.simpleName}"></label>		
+			</div>	
+			
+			<div th:if="${compte.class.simpleName==='CompteCourant'}">
+				<label>Decouvert:</label>
+			    <label th:text="${compte.decouvert}"></label>		
+			</div>	
+			
+			<div th:if="${compte.class.simpleName==='CompteCourant'}">
+				<label>Taux:</label>
+			    <label th:text="${compte.taux}"></label>		
+			</div>		
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="panel panel-primary" th:if="${compte}">
+			<div class="panel-heading">Operations sur le compte</div>
+			<div class="panel-body">
+			
+			
+			</div>
+		</div>
+		
+		<div class="panel panel-primary" th:if="${compte}">
+			<div class="panel-heading">Lste des operations</div>
+			<div class="panel-body">
+			
+			
+			</div>
+		</div>
+	</div>
+</body>
+</html>

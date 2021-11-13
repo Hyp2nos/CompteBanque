@@ -18,6 +18,8 @@ import com.compte.org.enteties.CompteEpargne;
 import com.compte.org.enteties.Operation;
 import com.compte.org.enteties.Retrait;
 import com.compte.org.enteties.Versement;
+import com.compte.org.metier.BanqueMetierImplementation;
+import com.compte.org.metier.IBanqueMetier;
 
 @SpringBootApplication
 public class Finupp1Application implements CommandLineRunner {
@@ -27,6 +29,8 @@ public class Finupp1Application implements CommandLineRunner {
 	private CompteRepository compteRepository;
 	@Autowired
 	private OperationRepository operationRepository;
+	@Autowired
+	private IBanqueMetier banque;
 	public static void main(String[] args) {
 //		ApplicationContext ctx = SpringApplication.run(Finupp1Application.class, args);
 //		ClientRepository clientRepository = ctx.getBean(ClientRepository.class);
@@ -56,6 +60,7 @@ public class Finupp1Application implements CommandLineRunner {
 		operationRepository.save(new Retrait(new Date(), 9000, cmp2));
 
 
+		banque.verser("c1", 111111111);
 	}
 
 }
